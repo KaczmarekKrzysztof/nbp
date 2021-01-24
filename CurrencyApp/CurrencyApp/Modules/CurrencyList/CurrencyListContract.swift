@@ -9,6 +9,7 @@ import Foundation
 
 enum CurrencyListAction {
     case didLoad
+    case didSelect(currency: Currency)
 }
 
 struct CurrencyListState {

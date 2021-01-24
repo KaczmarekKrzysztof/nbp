@@ -9,10 +9,11 @@ import Foundation
 
 enum CurrencyDetailsAction {
     case didLoad
+    case didPressBack
 }
 
 struct CurrencyDetailsState {
-
+    let title: String
 }
 
 protocol CurrencyDetailsViewProtocol: class {

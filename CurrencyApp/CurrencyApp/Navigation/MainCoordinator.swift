@@ -19,6 +19,19 @@ class MainCoordinator: CoordinatorProtocol {
     func start() {
         let viewModel = CurrencyListViewModel()
         let viewController = CurrencyListViewController(viewModel: viewModel)
+        viewModel.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
     }
+    
+    func showDetails(for currency: Currency) {
+        let viewModel = CurrencyDetailsViewModel(currency: currency)
+        let viewController = CurrencyDetailsViewController(viewModel: viewModel)
+        viewModel.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func moveBackToList() {
+        navigationController.popViewController(animated: true)
+    }
+    
 }

@@ -9,6 +9,12 @@ import Foundation
 
 class CurrencyDetailsViewModel: CurrencyDetailsViewModelProtocol {
     weak var view: CurrencyDetailsViewProtocol?
+    weak var coordinator: MainCoordinator?
+    private let currency: Currency
+    
+    init(currency: Currency) {
+        self.currency = currency
+    }
     
     func sendAction(_ action: CurrencyDetailsAction) {
         process(action: action)
@@ -18,10 +24,11 @@ class CurrencyDetailsViewModel: CurrencyDetailsViewModelProtocol {
 private extension CurrencyDetailsViewModel {
     
     func process(action: CurrencyDetailsAction) {
-        
         switch action {
         case .didLoad:
-            break
+            view?.update(with: CurrencyDetailsState(title: currency.name))
+        case .didPressBack:
+            coordinator?.moveBackToList()
         }
     }
     

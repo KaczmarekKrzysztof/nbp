@@ -48,11 +48,16 @@ class CurrencyDetailsViewController: UIViewController, CurrencyDetailsViewProtoc
 private extension CurrencyDetailsViewController {
     
     func render(state: CurrencyDetailsState) {
-        
+        currentState = state
+        title = state.title
     }
     
     func setUp() {
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonPressed))
+        
+        
         view.backgroundColor = UIColor.background()
         view.addSubview(tableView)
         view.addSubview(headerView)
@@ -69,6 +74,11 @@ private extension CurrencyDetailsViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+    }
+    
+    @objc
+    func backButtonPressed() {
+        viewModel.sendAction(.didPressBack)
     }
     
 }

@@ -38,6 +38,11 @@ class CurrencyListViewController: UIViewController, CurrencyListViewProtocol {
         viewModel.sendAction(.didLoad)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     func update(with state: CurrencyListState) {
         render(state: state)
     }
@@ -52,7 +57,6 @@ private extension CurrencyListViewController {
     
     func setUp() {
         placeholderView.isHidden = true
-        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = UIColor.background()
         view.addSubview(tableView)
         view.addSubview(placeholderView)
@@ -89,6 +93,11 @@ extension CurrencyListViewController: UITableViewDataSource, UITableViewDelegate
         }
         cell.configure(with: Currency(date: Date(), name: "dolar amerykański", code: "USD", midValue: 3.7312))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        viewModel.sendAction(.didSelect(currency: Currency(date: Date(), name: "dolar amerykański", code: "USD", midValue: 3.7312)))
     }
     
 }

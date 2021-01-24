@@ -9,6 +9,7 @@ import Foundation
 
 class CurrencyListViewModel: CurrencyListViewModelProtocol {
     weak var view: CurrencyListViewProtocol?
+    weak var coordinator: MainCoordinator?
     
     func sendAction(_ action: CurrencyListAction) {
         process(action: action)
@@ -18,10 +19,11 @@ class CurrencyListViewModel: CurrencyListViewModelProtocol {
 private extension CurrencyListViewModel {
     
     func process(action: CurrencyListAction) {
-        
         switch action {
         case .didLoad:
             break
+        case .didSelect(let currency):
+            coordinator?.showDetails(for: currency)
         }
     }
     
