@@ -91,11 +91,12 @@ extension CurrencyListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyListCell", for: indexPath) as? CurrencyListCell,
-              let currency = currentState?.currencies[indexPath.row]
+              let currency = currentState?.currencies[indexPath.row],
+              let effectiveDateString = currentState?.effectiveDateString
         else {
             return UITableViewCell()
         }
-        cell.configure(with: currency)
+        cell.configure(with: CurrencyListCellModel(effectiveDateString: effectiveDateString, currency: currency))
         return cell
     }
     

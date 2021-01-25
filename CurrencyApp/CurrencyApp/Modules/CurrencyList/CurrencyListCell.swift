@@ -8,8 +8,13 @@
 import Foundation
 import UIKit
 
+struct CurrencyListCellModel {
+    let effectiveDateString: String
+    let currency: Currency
+}
+
 class CurrencyListCell: UITableViewCell, ConfigurableCellProtocol {
-    typealias CellModelType = Currency
+    typealias CellModelType = CurrencyListCellModel
     private lazy var containerView: UIView = prepareContainerView()
     private lazy var dateLabel: UILabel = prepareLabel()
     private lazy var nameLabel: UILabel = prepareLabel()
@@ -27,18 +32,18 @@ class CurrencyListCell: UITableViewCell, ConfigurableCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with currency: Currency) {
-        dateLabel.text = "2020-01-21"
-        nameLabel.text = currency.name
-        codeLabel.text = "\(currency.code)"
-        if let midValue = currency.midValue {
+    func configure(with model: CurrencyListCellModel) {
+        dateLabel.text = model.effectiveDateString
+        nameLabel.text = model.currency.name
+        codeLabel.text = "\(model.currency.code)"
+        if let midValue = model.currency.midValue {
             midValueLabel.text = "\(midValue)"
             midValueLabel.isHidden = false
             askValueLabel.isHidden = true
             bidValueLabel.isHidden = true
         }
         
-        if let askValue = currency.askValue, let bidValue = currency.bidValue {
+        if let askValue = model.currency.askValue, let bidValue = model.currency.bidValue {
             askValueLabel.text = "ASK: \(askValue)"
             bidValueLabel.text = "BID: \(bidValue)"
             midValueLabel.isHidden = true
