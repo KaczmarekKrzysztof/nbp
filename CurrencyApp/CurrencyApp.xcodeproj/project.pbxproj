@@ -31,6 +31,7 @@
 		E6BF966725BD92B400E8F47E /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966625BD92B400E8F47E /* DatePickerView.swift */; };
 		E6BF966B25BDE81700E8F47E /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */; };
 		E6BF967125BF26F500E8F47E /* CurrencyListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF967025BF26F500E8F47E /* CurrencyListCellModel.swift */; };
+		E6BF967525BF2E8900E8F47E /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF967425BF2E8900E8F47E /* Date+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		E6BF966625BD92B400E8F47E /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
 		E6BF967025BF26F500E8F47E /* CurrencyListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListCellModel.swift; sourceTree = "<group>"; };
+		E6BF967425BF2E8900E8F47E /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				E6BF963725BA0DBF00E8F47E /* UIColor+Additions.swift */,
 				E6BF963625BA0DBF00E8F47E /* UIFont+Additions.swift */,
 				E6BF963825BA0DBF00E8F47E /* UINavigationController+StatusBar.swift */,
+				E6BF967425BF2E8900E8F47E /* Date+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				E6BF966B25BDE81700E8F47E /* CurrencyRepository.swift in Sources */,
 				E6BF967125BF26F500E8F47E /* CurrencyListCellModel.swift in Sources */,
 				E6BF965D25BC9E1000E8F47E /* CurrencyDetailsCell.swift in Sources */,
+				E6BF967525BF2E8900E8F47E /* Date+Additions.swift in Sources */,
 				E6BF962425BA093A00E8F47E /* MainCoordinator.swift in Sources */,
 				E6BF963E25BA0E6600E8F47E /* PlaceholderView.swift in Sources */,
 				E6BF966725BD92B400E8F47E /* DatePickerView.swift in Sources */,

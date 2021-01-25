@@ -11,12 +11,16 @@ enum CurrencyDetailsAction {
     case didLoad
     case didPressBack
     case didPullToRefresh
+    case didPickFromDate(date: Date)
+    case didPickToDate(date: Date)
 }
 
 struct CurrencyDetailsState {
     let title: String
     let rates: [Rate]
     let isRefreshing: Bool
+    let fromDate: Date
+    let toDate: Date
 }
 
 protocol CurrencyDetailsViewProtocol: class {

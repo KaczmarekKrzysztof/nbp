@@ -14,6 +14,7 @@ class CurrencyDetailsViewController: UIViewController, CurrencyDetailsViewProtoc
     
     private let headerView: CurrencyDetailsHeaderView = CurrencyDetailsHeaderView()
     private let refreshControl = UIRefreshControl()
+    private let datePicker = DatePickerView()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.delegate = self
@@ -59,6 +60,8 @@ private extension CurrencyDetailsViewController {
         else if !state.isRefreshing {
             refreshControl.endRefreshing()
         }
+        
+        headerView.configure(fromDate: state.fromDate, toDate: state.toDate)
     }
     
     func setUp() {
@@ -68,12 +71,15 @@ private extension CurrencyDetailsViewController {
         tableView.refreshControl = refreshControl
         refreshControl.tintColor = UIColor.white
         refreshControl.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
+        datePicker.isHidden = true
         view.backgroundColor = UIColor.background()
         view.addSubview(tableView)
         view.addSubview(headerView)
+        view.addSubview(datePicker)
         
         headerView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
         
         headerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 00).isActive = true
         headerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
@@ -84,6 +90,27 @@ private extension CurrencyDetailsViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        
+        datePicker.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        datePicker.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        datePicker.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        
+        headerView.fromAction = {
+            self.datePicker.isHidden = false
+            self.datePicker.doneAction = { date in
+                self.viewModel.sendAction(.didPickFromDate(date: date))
+                self.datePicker.isHidden = true
+            }
+        }
+        
+        headerView.toAction = {
+            self.datePicker.isHidden = false
+            self.datePicker.doneAction = { date in
+                self.viewModel.sendAction(.didPickToDate(date: date))
+                self.datePicker.isHidden = true
+            }
+        }
     }
     
     @objc

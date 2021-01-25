@@ -12,6 +12,9 @@ class CurrencyDetailsHeaderView: UIView {
     private lazy var fromDateLabel: UILabel = prepareDateLabel()
     private lazy var toDateLabel: UILabel = prepareDateLabel()
     
+    var fromAction: (() -> Void)?
+    var toAction: (() -> Void)?
+    
     init() {
         super.init(frame: CGRect.zero)
         setUp()
@@ -20,6 +23,14 @@ class CurrencyDetailsHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(fromDate: Date, toDate: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        fromDateLabel.text = "From: \(formatter.string(from: fromDate))"
+        toDateLabel.text = "To: \(formatter.string(from: toDate))"
+    }
+    
 }
 
 private extension CurrencyDetailsHeaderView {
@@ -40,6 +51,14 @@ private extension CurrencyDetailsHeaderView {
         toDateLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         toDateLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         toDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        let fromTapGesture = UITapGestureRecognizer(target: self, action: #selector(fromTapped))
+        fromDateLabel.isUserInteractionEnabled = true
+        fromDateLabel.addGestureRecognizer(fromTapGesture)
+        
+        let toTapGesture = UITapGestureRecognizer(target: self, action: #selector(toTapped))
+        toDateLabel.isUserInteractionEnabled = true
+        toDateLabel.addGestureRecognizer(toTapGesture)
     }
     
     func prepareDateLabel() -> UILabel {
@@ -47,6 +66,16 @@ private extension CurrencyDetailsHeaderView {
         label.textColor = UIColor.orange
         label.font = UIFont.bold(withSize: 24)
         return label
+    }
+    
+    @objc
+    func fromTapped() {
+        fromAction?()
+    }
+    
+    @objc
+    func toTapped() {
+        toAction?()
     }
     
 }
