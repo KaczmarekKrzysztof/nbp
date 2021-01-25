@@ -10,6 +10,7 @@ import Foundation
 class CurrencyListViewModel: CurrencyListViewModelProtocol {
     weak var view: CurrencyListViewProtocol?
     weak var coordinator: MainCoordinator?
+    private let repository = CurrencyRepository()
     
     func sendAction(_ action: CurrencyListAction) {
         process(action: action)
@@ -21,7 +22,17 @@ private extension CurrencyListViewModel {
     func process(action: CurrencyListAction) {
         switch action {
         case .didLoad:
-            break
+            let state = CurrencyListState(isPlaceholderVisible: true, currencies: [], effectiveDateString: nil)
+            view?.update(with: state)
+            repository.getCurrencies(for: .c) { [weak self] (result) in
+                switch result {
+                case .success(let response):
+                    let state = CurrencyListState(isPlaceholderVisible: false, currencies: response.currencies, effectiveDateString: response.effectiveDate)
+                    self?.view?.update(with: state)
+                case .failure(_):
+                    break
+                }
+            }
         case .didSelect(let currency):
             coordinator?.showDetails(for: currency)
         }

@@ -50,6 +50,7 @@ private extension CurrencyDetailsViewController {
     func render(state: CurrencyDetailsState) {
         currentState = state
         title = state.title
+        tableView.reloadData()
     }
     
     func setUp() {
@@ -90,14 +91,16 @@ extension CurrencyDetailsViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return currentState?.rates.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyDetailsCell", for: indexPath) as? CurrencyDetailsCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyDetailsCell", for: indexPath) as? CurrencyDetailsCell,
+              let rate = currentState?.rates[indexPath.row]
+        else {
             return UITableViewCell()
         }
-        cell.configure(with: Currency(date: Date(), name: "dolar amerykański", code: "USD", midValue: 3.7312))
+        cell.configure(with: rate)
         return cell
     }
     

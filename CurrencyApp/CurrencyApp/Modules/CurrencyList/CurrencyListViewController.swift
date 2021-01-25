@@ -52,7 +52,9 @@ class CurrencyListViewController: UIViewController, CurrencyListViewProtocol {
 private extension CurrencyListViewController {
     
     func render(state: CurrencyListState) {
-        
+        currentState = state
+        placeholderView.isHidden = !state.isPlaceholderVisible
+        tableView.reloadData()
     }
     
     func setUp() {
@@ -84,20 +86,23 @@ extension CurrencyListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return currentState?.currencies.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyListCell", for: indexPath) as? CurrencyListCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyListCell", for: indexPath) as? CurrencyListCell,
+              let currency = currentState?.currencies[indexPath.row]
+        else {
             return UITableViewCell()
         }
-        cell.configure(with: Currency(date: Date(), name: "dolar amerykański", code: "USD", midValue: 3.7312))
+        cell.configure(with: currency)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        viewModel.sendAction(.didSelect(currency: Currency(date: Date(), name: "dolar amerykański", code: "USD", midValue: 3.7312)))
+        guard let currency = currentState?.currencies[indexPath.row] else { return }
+        viewModel.sendAction(.didSelect(currency: currency))
     }
     
 }

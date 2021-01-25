@@ -7,16 +7,19 @@
 
 import Foundation
 
-struct Rate {
+struct Rate: Codable {
     let no: String
-    let effectiveDate: Date
+    let effectiveDate: String
     let midValue: Double?
     let bidValue: Double?
     let askValue: Double?
     
-//    "no": "004/A/NBP/2020",
-//    "effectiveDate": "2020-01-08",
-//    "mid": 3.8123
-//    "bid": 3.7597,
-//    "ask": 3.8357
+    enum CodingKeys: String, CodingKey {
+        case no
+        case effectiveDate
+        case midValue = "mid"
+        case bidValue = "bid"
+        case askValue = "ask"
+    }
+    
 }

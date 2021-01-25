@@ -13,7 +13,9 @@ enum CurrencyListAction {
 }
 
 struct CurrencyListState {
-
+    let isPlaceholderVisible: Bool
+    let currencies: [Currency]
+    let effectiveDateString: String?
 }
 
 protocol CurrencyListViewProtocol: class {

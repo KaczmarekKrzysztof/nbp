@@ -29,6 +29,7 @@
 		E6BF966125BCA09600E8F47E /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966025BCA09600E8F47E /* Rate.swift */; };
 		E6BF966425BCA17100E8F47E /* CurrencyDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966325BCA17100E8F47E /* CurrencyDetailsHeaderView.swift */; };
 		E6BF966725BD92B400E8F47E /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966625BD92B400E8F47E /* DatePickerView.swift */; };
+		E6BF966B25BDE81700E8F47E /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		E6BF966025BCA09600E8F47E /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		E6BF966325BCA17100E8F47E /* CurrencyDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsHeaderView.swift; sourceTree = "<group>"; };
 		E6BF966625BD92B400E8F47E /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				E6BF964425BA0F9200E8F47E /* Models */,
 				E6BF962825BA09AD00E8F47E /* Modules */,
 				E6BF962625BA099900E8F47E /* Navigation */,
+				E6BF966925BDE7FB00E8F47E /* Repository */,
 				E6BF962925BA09BB00E8F47E /* Resources */,
 			);
 			path = CurrencyApp;
@@ -179,6 +182,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E6BF966925BDE7FB00E8F47E /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,6 +262,7 @@
 				E6BF964225BA0F0700E8F47E /* ConfigurableCellProtocol.swift in Sources */,
 				E6BF964E25BAFE7600E8F47E /* CurrencyListViewModel.swift in Sources */,
 				E6BF960C25BA085A00E8F47E /* CurrencyListViewController.swift in Sources */,
+				E6BF966B25BDE81700E8F47E /* CurrencyRepository.swift in Sources */,
 				E6BF965D25BC9E1000E8F47E /* CurrencyDetailsCell.swift in Sources */,
 				E6BF962425BA093A00E8F47E /* MainCoordinator.swift in Sources */,
 				E6BF963E25BA0E6600E8F47E /* PlaceholderView.swift in Sources */,

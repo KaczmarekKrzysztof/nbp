@@ -14,6 +14,7 @@ enum CurrencyDetailsAction {
 
 struct CurrencyDetailsState {
     let title: String
+    let rates: [Rate]
 }
 
 protocol CurrencyDetailsViewProtocol: class {
