@@ -91,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				E6BF962725BA09A400E8F47E /* Application */,
+				E6BF966E25BF265700E8F47E /* Common */,
 				E6BF963525BA0D9D00E8F47E /* Extensions */,
 				E6BF964425BA0F9200E8F47E /* Models */,
 				E6BF962825BA09AD00E8F47E /* Modules */,
@@ -140,11 +141,9 @@
 		E6BF962C25BA0BBA00E8F47E /* CurrencyList */ = {
 			isa = PBXGroup;
 			children = (
-				E6BF963D25BA0E6600E8F47E /* PlaceholderView.swift */,
 				E6BF965025BB009100E8F47E /* CurrencyListContract.swift */,
 				E6BF960B25BA085A00E8F47E /* CurrencyListViewController.swift */,
 				E6BF964D25BAFE7600E8F47E /* CurrencyListViewModel.swift */,
-				E6BF964125BA0F0700E8F47E /* ConfigurableCellProtocol.swift */,
 				E6BF963025BA0C2900E8F47E /* CurrencyListCell.swift */,
 			);
 			path = CurrencyList;
@@ -158,7 +157,6 @@
 				E6BF965625BC9DE900E8F47E /* CurrencyDetailsViewModel.swift */,
 				E6BF965C25BC9E1000E8F47E /* CurrencyDetailsCell.swift */,
 				E6BF966325BCA17100E8F47E /* CurrencyDetailsHeaderView.swift */,
-				E6BF966625BD92B400E8F47E /* DatePickerView.swift */,
 			);
 			path = CurrencyDetails;
 			sourceTree = "<group>";
@@ -188,6 +186,16 @@
 				E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		E6BF966E25BF265700E8F47E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E6BF963D25BA0E6600E8F47E /* PlaceholderView.swift */,
+				E6BF964125BA0F0700E8F47E /* ConfigurableCellProtocol.swift */,
+				E6BF966625BD92B400E8F47E /* DatePickerView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
