@@ -30,6 +30,7 @@
 		E6BF966425BCA17100E8F47E /* CurrencyDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966325BCA17100E8F47E /* CurrencyDetailsHeaderView.swift */; };
 		E6BF966725BD92B400E8F47E /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966625BD92B400E8F47E /* DatePickerView.swift */; };
 		E6BF966B25BDE81700E8F47E /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */; };
+		E6BF967125BF26F500E8F47E /* CurrencyListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BF967025BF26F500E8F47E /* CurrencyListCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		E6BF966325BCA17100E8F47E /* CurrencyDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsHeaderView.swift; sourceTree = "<group>"; };
 		E6BF966625BD92B400E8F47E /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		E6BF966A25BDE81700E8F47E /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
+		E6BF967025BF26F500E8F47E /* CurrencyListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,10 +143,10 @@
 		E6BF962C25BA0BBA00E8F47E /* CurrencyList */ = {
 			isa = PBXGroup;
 			children = (
+				E6BF966F25BF26E000E8F47E /* Cell */,
 				E6BF965025BB009100E8F47E /* CurrencyListContract.swift */,
 				E6BF960B25BA085A00E8F47E /* CurrencyListViewController.swift */,
 				E6BF964D25BAFE7600E8F47E /* CurrencyListViewModel.swift */,
-				E6BF963025BA0C2900E8F47E /* CurrencyListCell.swift */,
 			);
 			path = CurrencyList;
 			sourceTree = "<group>";
@@ -196,6 +198,15 @@
 				E6BF966625BD92B400E8F47E /* DatePickerView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		E6BF966F25BF26E000E8F47E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E6BF963025BA0C2900E8F47E /* CurrencyListCell.swift */,
+				E6BF967025BF26F500E8F47E /* CurrencyListCellModel.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 				E6BF964E25BAFE7600E8F47E /* CurrencyListViewModel.swift in Sources */,
 				E6BF960C25BA085A00E8F47E /* CurrencyListViewController.swift in Sources */,
 				E6BF966B25BDE81700E8F47E /* CurrencyRepository.swift in Sources */,
+				E6BF967125BF26F500E8F47E /* CurrencyListCellModel.swift in Sources */,
 				E6BF965D25BC9E1000E8F47E /* CurrencyDetailsCell.swift in Sources */,
 				E6BF962425BA093A00E8F47E /* MainCoordinator.swift in Sources */,
 				E6BF963E25BA0E6600E8F47E /* PlaceholderView.swift in Sources */,

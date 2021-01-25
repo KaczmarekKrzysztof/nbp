@@ -13,6 +13,7 @@ class CurrencyDetailsViewController: UIViewController, CurrencyDetailsViewProtoc
     private(set) var currentState: CurrencyDetailsState?
     
     private let headerView: CurrencyDetailsHeaderView = CurrencyDetailsHeaderView()
+    private let refreshControl = UIRefreshControl()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.delegate = self
@@ -51,14 +52,22 @@ private extension CurrencyDetailsViewController {
         currentState = state
         title = state.title
         tableView.reloadData()
+        
+        if state.isRefreshing {
+            refreshControl.beginRefreshing()
+        }
+        else if !state.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
     
     func setUp() {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonPressed))
-        
-        
+        tableView.refreshControl = refreshControl
+        refreshControl.tintColor = UIColor.white
+        refreshControl.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
         view.backgroundColor = UIColor.background()
         view.addSubview(tableView)
         view.addSubview(headerView)
@@ -80,6 +89,11 @@ private extension CurrencyDetailsViewController {
     @objc
     func backButtonPressed() {
         viewModel.sendAction(.didPressBack)
+    }
+    
+    @objc
+    func refreshControlPulled() {
+        viewModel.sendAction(.didPullToRefresh)
     }
     
 }

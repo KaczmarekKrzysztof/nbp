@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-struct CurrencyListCellModel {
-    let effectiveDateString: String
-    let currency: Currency
-}
-
 class CurrencyListCell: UITableViewCell, ConfigurableCellProtocol {
     typealias CellModelType = CurrencyListCellModel
     private lazy var containerView: UIView = prepareContainerView()

@@ -10,12 +10,14 @@ import Foundation
 enum CurrencyListAction {
     case didLoad
     case didSelect(currency: Currency)
+    case didPullToRefresh
 }
 
 struct CurrencyListState {
     let isPlaceholderVisible: Bool
     let currencies: [Currency]
     let effectiveDateString: String?
+    let isRefreshing: Bool
 }
 
 protocol CurrencyListViewProtocol: class {

@@ -10,11 +10,13 @@ import Foundation
 enum CurrencyDetailsAction {
     case didLoad
     case didPressBack
+    case didPullToRefresh
 }
 
 struct CurrencyDetailsState {
     let title: String
     let rates: [Rate]
+    let isRefreshing: Bool
 }
 
 protocol CurrencyDetailsViewProtocol: class {

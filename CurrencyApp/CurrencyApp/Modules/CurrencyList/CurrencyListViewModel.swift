@@ -22,12 +22,12 @@ private extension CurrencyListViewModel {
     func process(action: CurrencyListAction) {
         switch action {
         case .didLoad:
-            let state = CurrencyListState(isPlaceholderVisible: true, currencies: [], effectiveDateString: nil)
+            let state = CurrencyListState(isPlaceholderVisible: true, currencies: [], effectiveDateString: nil, isRefreshing: true)
             view?.update(with: state)
             repository.getCurrencies(for: .c) { [weak self] (result) in
                 switch result {
                 case .success(let response):
-                    let state = CurrencyListState(isPlaceholderVisible: false, currencies: response.currencies, effectiveDateString: response.effectiveDate)
+                    let state = CurrencyListState(isPlaceholderVisible: false, currencies: response.currencies, effectiveDateString: response.effectiveDate, isRefreshing: false)
                     self?.view?.update(with: state)
                 case .failure(_):
                     break
@@ -35,6 +35,18 @@ private extension CurrencyListViewModel {
             }
         case .didSelect(let currency):
             coordinator?.showDetails(for: currency)
+        case .didPullToRefresh:
+            let state = CurrencyListState(isPlaceholderVisible: true, currencies: view?.currentState?.currencies ?? [], effectiveDateString: nil, isRefreshing: true)
+            view?.update(with: state)
+            repository.getCurrencies(for: .c) { [weak self] (result) in
+                switch result {
+                case .success(let response):
+                    let state = CurrencyListState(isPlaceholderVisible: false, currencies: response.currencies, effectiveDateString: response.effectiveDate, isRefreshing: false)
+                    self?.view?.update(with: state)
+                case .failure(_):
+                    break
+                }
+            }
         }
     }
     

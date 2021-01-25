@@ -12,6 +12,7 @@ class CurrencyListViewController: UIViewController, CurrencyListViewProtocol {
     private(set) var currentState: CurrencyListState?
     
     private let placeholderView: PlaceholderView = PlaceholderView()
+    private let refreshControl = UIRefreshControl()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.delegate = self
@@ -55,10 +56,16 @@ private extension CurrencyListViewController {
         currentState = state
         placeholderView.isHidden = !state.isPlaceholderVisible
         tableView.reloadData()
+        if !state.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
     
     func setUp() {
         placeholderView.isHidden = true
+        tableView.refreshControl = refreshControl
+        refreshControl.tintColor = UIColor.white
+        refreshControl.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
         view.backgroundColor = UIColor.background()
         view.addSubview(tableView)
         view.addSubview(placeholderView)
@@ -75,6 +82,11 @@ private extension CurrencyListViewController {
         placeholderView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         placeholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         placeholderView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+    }
+    
+    @objc
+    func refreshControlPulled() {
+        viewModel.sendAction(.didPullToRefresh)
     }
     
 }
